@@ -1,0 +1,50 @@
+
+Subject	Re: [CS615]HW4
+Sender	Jan Schaumann 
+Recipient	byu1 
+Date	04/08/2012 11:02 PM
+byu1 <byu1@stevens.edu> wrote:
+
+Please see the attachment for my homework4.
+
+Your grade for HW#4 is: 36/45
+
+- stop iptable service to prevent ip packets are blocked.
+
+service iptables stop
+
+But that disables _all_ packet filtering, which is not what you want.
+You just want to prevent the filtering of DNS related packages.
+
+| Track down the packets in your tcpdump referring to the DNS query from
+| your DNS server to one of the root servers, then to the various DNS
+| servers before the DNS information is returned to your server by one of
+| Yahoo!'s authoritative DNS servers.
+
+In the first part, your tcpdump only shows the queries from your host to
+yahoo's nameserver.
+
+Likewise in the second part.  The tcpdump output there shows a lot of
+information that we do not need.
+
+SMTP:
+
+ helo panix.netmeister.org
+
+Why do you use this hostname?
+
+
+No answer found to the question "what, if any, restrictions appear to be
+in effect on this mail server?"
+
+NO ICMP CAN BE CAPTURED!
+
+Why not?
+
+Why does the traceroute to www.cs.stevens.edu not work?
+
+
+Not much insight on global traceroute.
+No summary of what you learned.
+
+=Jan

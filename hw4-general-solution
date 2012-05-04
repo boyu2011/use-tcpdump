@@ -1,0 +1,46 @@
+
+Subject	[cs615asa] HW#4 grades
+Sender	Jan Schaumann 
+Recipient	cs615asa@lists.stevens.edu 
+Reply-To	CS615A - Aspects of System Administration 
+Date	04/08/2012 11:34 PM
+Hello,
+
+I've just sent out grades for HW#4.  If you have not received a grade,
+please let me know ASAP.
+
+Here are a few things you may wish to review in this context:
+
+- Make sure you understand what a caching DNS resolver is and what the
+  point of the first part of the exercise was.  You do NOT want to point
+  your DNS server to a forwarder, since that would mean your server is
+  not doing any of the real resolution we're looking to trace.
+
+- Make sure you understand all the traffic going around in your tcpdump.
+  When you are tracing DNS related issues, you probably want to avoid
+  having the host doing the tracing generate additional lookups, such as
+  a reverse lookup for each and every packet it sees.  Use of '-n' is
+  probably advised.
+
+- Review the use of the 'helo' part of the SMTP protocol.  What is it
+  used for?  What is the correct or most suitable hostname to pass?
+
+- Think about how email works - is the fact that the server accepts any
+  email from anybody anywhere a problem?
+
+- I saw some very nice debugging and reading of the tcpdump packets in
+  this part.  Remember that you can see ascii and hex.
+
+- Think about why traceroutes from certain hosts to other hosts time
+  out, but why they may work from a second host elsewhere.  If you have
+  a suspicion for a reason, what, if anything, can you do to work around
+  that problem?
+
+- Most of you noted with some surprise that traffic to Hawai`i appears
+  to always go through Littelton, CO.  Research why that might be.
+
+-Jan
+_______________________________________________
+cs615asa mailing list
+cs615asa@lists.stevens.edu
+https://lists.stevens.edu/cgi-bin/mailman/listinfo/cs615asa

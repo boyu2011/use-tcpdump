@@ -1,0 +1,65 @@
+http://www.cs.stevens.edu/~jschauma/615/s12-hw4.html
+CS615A -- Aspects of System Administration - Spring 2012 - HW#4
+
+HW#4: Use tcpdump to observe traffic flow
+
+Summary:
+
+The objective of this assignment is for you to learn how to use tcpdump to observe and analyze DNS, HTTP and SMTP related traffic. In order to be able to observe DNS traffic flowing between your host and the DNS root servers as well as other DNS servers, you will need to set up and configure a simple caching name server.
+
+Note: you must use tcpdump. Graphical helper applications such as "wireshark" or similar tools are explicitly prohibited. You need to be able to read the flat text tcpdump output yourself and not rely on other tools to highlight things for you.
+
+This assignment is worth 45 points.
+
+OS Instances
+
+The exercises below can be done on any OS instance you like. You will need at least two OS instances, one for the DNS server and one for the "client". Make sure that the firewall rules between the server and client allow for all the required traffic.
+
+DNS server setup
+
+Set up a caching only DNS server (a ``resolver'') on your OS instance. You may consult any online documentation available, such as this document or any others you prefer. You may use bind or any other DNS server software you like. The only restriction is that in the end your host must be able to function as a caching DNS server.
+
+Set up your client host to use your newly created DNS server for host lookups.
+
+tcpdump exercises
+
+Use the tcpdump utility to monitor the network traffic using the following scenarios:
+
+on the DNS server, run the following commands:
+telnet www.yahoo.com 80
+GET / HTTP/1.0
+
+
+Track down the packets in your tcpdump referring to the DNS query from your DNS server to one of the root servers, then to the various DNS servers before the DNS information is returned to your server by one of Yahoo!'s authoritative DNS servers.
+Identify the 3-way handshake that initiates the connection from your DNS server to port 80 on Yahoo!'s webserver, the packets that are being sent back and forth and finally the closing of the connection.
+
+
+on your client host, run the following commands:
+telnet www.google.com 80
+GET / HTTP/1.0
+
+
+On your client: Track down the packets in your tcpdump referring to the DNS query from your client host to your DNS server.
+On your DNS server: Track down the packets in your tcpdump referring to the DNS query from your DNS server to one of the root servers, then to the various DNS servers before the DNS information is returned to your server by one of Google's authoritative DNS servers.
+
+
+SMTP tracking
+on either host, use the telnet command to talk to the SMTP server responsible for the stevens.edu domain and send yourself a mail (as seen in lecture 08).
+use tcpdump to track down the entire exchange (as we did in class): note the handshake, the size of the packets being sent back and forth (explain the number of bytes for each exchange) and the tear down.
+repeat the same process using different 'mail from' and 'rcpt to' lines -- what, if any, restrictions appear to be in effect on this mail server?
+
+
+on either host, run the command traceroute www.cs.stevens.edu; observe the ICMP and UDP packets
+
+on any host (your own, your ec2 instance, linux-lab, ...), also traceroute to the following hosts to observe the different routes across the globe taken: www.uni-marburg.de, www.uba.ar, www.hawaii.edu, www.hku.hk, www.du.ac.in, www.usyd.edu.au. Then use Visual Trace Route and traceroute on a map to map the hops from different starting locations. Report anything noteworthy or interesting.
+Deliverables and Due Date
+
+Your deliverable is a single flat text file (plain ascii, preferably created via a unix editor such as vi(1)). The file needs to contain:
+
+your full name
+your @stevens.edu email address
+a trimmed tcpdump showing only the relevant lines for the tcpdump exercises
+a summary of what you learned
+The due date for this assignment is 2012-04-02 18:00. Please attach the file to an email sent from your @stevens.edu email address to jschauma@stevens.edu with a subject of "[CS615] HW4".
+
+[Course Website]
